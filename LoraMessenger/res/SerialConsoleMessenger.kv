@@ -1,0 +1,58 @@
+#:kivy 2.0.0
+
+
+MDBoxLayout:
+    orientation: "vertical"
+
+
+    MDToolbar:
+        title: "Serial Console Messenger"
+
+    MDGridLayout:
+        cols: 2
+
+        ScrollView:
+            MDLabel:
+                text: "console"
+                id: consoleLog
+                halign: "left"
+                valign: "bottom"
+                text_size: self.parent.size
+
+        MDGridLayout:
+            rows: 2
+
+            ScrollView:
+                MDLabel:
+                    size_hint: 1, 0.4
+                    id: debugLog
+                    text: "debug log"
+                    halign: "left"
+                    valign: "bottom"
+                    text_size: self.parent.size
+
+            ScrollView:
+                MDLabel:
+                    size_hint: 1, 0.6
+                    text: "input log"
+                    halign: "left"
+                    valign: "bottom"
+                    text_size: self.parent.size
+
+
+    MDGridLayout:
+        adaptive_height: True
+        cols:2
+        padding: 32,0,0,4
+        spacing: 30,0
+
+        MDTextFieldRound:
+            id: inputField
+            hint_text: "[message, addr]"
+            height: sendButton.height
+
+        MDFloatingActionButton:
+            id: sendButton
+            icon: "send"
+            size: self.size
+            on_release: app.process_input()
